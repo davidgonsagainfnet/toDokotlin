@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">toDo</string>
+    <string name="email">Email</string>
+    <string name="senha">Senha</string>
+    <string name="entrar">Entrar</string>
+    <string name="cadastrar">Cadastrar</string>
+    <string name="entrargoogle">Entrar com o Google</string>
+    <string name="registrargoogle">Registrar com o Google</string>
+    <string name="ou">OU</string>
+    <string name="registrar">REGISTRAR</string>
+    <string name="listatarefa">Lista de Tarefas</string>
+    <string name="adcionar">Adcionar</string>
+    <string name="deletar">Deletar</string>
+    <string name="limpar">Limpar</string>
+    <string name="minhastarefas">Minhas Tarefas</string>
+    <string name="nolist">Sem Tarefas</string>
+    <string name="notextlist">Campo descritivo de lista esta em branco</string>
+    <string name="taskList">Tarefa ja existe na lista</string>
+    <string name="register">Registrar</string>
+    <string name="senhacofirma">Confirma Senha</string>
+    <string name="id_client_web">884490789623-8v3vsbcpa26umdct0v6dlkmkbfbci32q.apps.googleusercontent.com</string>
+    <string name="loginsucesso">Logado com Sucesso</string>
+    <string name="loginsemsucesso">Falha ao Logar</string>
+    <string name="senhasNoIdentica">As Senhas são diferentes</string>
+    <string name="senhas6">Senha deve ter no minimo 6 digitos</string>
+    <string name="imformecampos">Preencha todos os campos</string>
+    <string name="userCreate">Usuario Criado Com Sucesso, Verifique sua caixa de Email</string>
+    <string name="userExist">Usuario ja cadastrado</string>
+    <string name="errorcreatuser">Erro ao criar usuario</string>
+    <string name="emailSend">Email enviado com sucesso</string>
+    <string name="emailNovalid">Email não validado</string>
+</resources>
