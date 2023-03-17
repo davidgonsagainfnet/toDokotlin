@@ -29,4 +29,8 @@
     <string name="errorcreatuser">Erro ao criar usuario</string>
     <string name="emailSend">Email enviado com sucesso</string>
     <string name="emailNovalid">Email não validado</string>
+    <string name="perfil">Perfil</string>
+    <string name="nome">Nome</string>
+    <string name="sobrenome">Sobrenome</string>
+    <string name="atualizar_perfil">ATUALIZAR PERFIL</string>
 </resources>

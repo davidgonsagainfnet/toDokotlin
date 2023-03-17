@@ -111,6 +111,12 @@ class MainActivity : AppCompatActivity() {
             binding.tvNolista.visibility = View.VISIBLE
         }
 
+        binding.imgPerfil.setOnClickListener {
+            val intent = Intent(this,PerfilActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
 //        val intent = Intent(this,LoginActivity::class.java)
 //        startActivity(intent)
     }
