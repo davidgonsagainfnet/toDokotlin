@@ -1,41 +1,33 @@
 {
   "project_info": {
-    "project_number": "884490789623",
-    "project_id": "projeto-todo-kotlin",
-    "storage_bucket": "projeto-todo-kotlin.appspot.com"
+    "project_number": "937577610117",
+    "project_id": "projetofinalkotlin",
+    "storage_bucket": "projetofinalkotlin.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:884490789623:android:c251ec865a00f701f6e9f2",
+        "mobilesdk_app_id": "1:937577610117:android:2bf7eaf4c94cfcf77ba2ec",
         "android_client_info": {
           "package_name": "infnet.com.david.todo"
         }
       },
       "oauth_client": [
         {
-          "client_id": "884490789623-m57tfojustajodoopvbp24m8f4ju8391.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "infnet.com.david.todo",
-            "certificate_hash": "8546bf6ab505aa927afabe2fa0a9ff599bbb6757"
-          }
-        },
-        {
-          "client_id": "884490789623-8v3vsbcpa26umdct0v6dlkmkbfbci32q.apps.googleusercontent.com",
+          "client_id": "937577610117-dummvnn2lsn100qi71ji2hqd8gium76f.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBS6s_seHoyEf7NpUSVAUjDs1SpvT2jixo"
+          "current_key": "AIzaSyAsa84CYD2nOrbNIf3gASb9Zl7NjCzxmDc"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "884490789623-8v3vsbcpa26umdct0v6dlkmkbfbci32q.apps.googleusercontent.com",
+              "client_id": "937577610117-dummvnn2lsn100qi71ji2hqd8gium76f.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -10,7 +10,7 @@
         android:id="@+id/imageView"
         android:scaleType="fitXY"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -28,48 +28,6 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/edt_item"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/adcionar"
-        android:textColorHint="@color/white"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-    <Button
-        android:id="@+id/btn_add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:text="@string/adcionar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_item" />
-
-    <Button
-        android:id="@+id/btn_remove"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:text="@string/deletar"
-        app:layout_constraintEnd_toEndOf="@+id/btn_clear"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_item" />
-
-    <Button
-        android:id="@+id/btn_clear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/limpar"
-        android:layout_marginRight="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_item" />
 
     <TextView
         android:id="@+id/textView5"
@@ -121,4 +79,16 @@
         app:layout_constraintEnd_toStartOf="@+id/img_logout"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/perfil" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_nova_tarefa"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/LightSkyBlue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/plus"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

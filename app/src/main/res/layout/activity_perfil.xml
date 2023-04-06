@@ -54,13 +54,26 @@
             app:srcCompat="@drawable/home" />
 
         <ImageView
-            android:id="@+id/img_perfil"
+            android:id="@+id/img_perfil_fundo"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="270dp"
             app:layout_constraintEnd_toEndOf="parent"
+            android:scaleType="fitXY"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView5"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:src="@color/purple_200" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_perfil"
+            android:layout_marginTop="15dp"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_gravity="center"
+            android:background="@mipmap/user_default"
+            app:layout_constraintTop_toBottomOf="@+id/imageView5"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btn_galeria"
@@ -68,7 +81,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|start"
             android:layout_marginTop="216dp"
-            android:layout_marginEnd="68dp"
+            android:layout_marginEnd="12dp"
             android:backgroundTint="@color/LightSkyBlue"
             android:src="@drawable/folders"
             android:tint="@color/white"
@@ -84,7 +97,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|start"
             android:layout_marginTop="216dp"
-            android:layout_marginEnd="280dp"
+            android:layout_marginEnd="192dp"
             android:backgroundTint="@color/LightSkyBlue"
             android:src="@drawable/photo_camera"
             android:tint="@color/white"
@@ -98,6 +111,7 @@
             android:id="@+id/edt_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
             android:ems="10"
             android:enabled="false"
             android:layout_marginTop="25dp"
@@ -109,6 +123,7 @@
             android:id="@+id/edt_nome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
             android:ems="10"
             android:hint="@string/nome"
             app:layout_constraintTop_toBottomOf="@+id/edt_email"
@@ -118,6 +133,7 @@
             android:id="@+id/edt_sobre_nome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
             android:ems="10"
             android:hint="@string/sobrenome"
 
@@ -129,9 +145,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/atualizar_perfil"
+            android:layout_marginHorizontal="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_sobre_nome" />
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

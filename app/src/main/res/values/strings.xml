@@ -18,7 +18,7 @@
     <string name="taskList">Tarefa ja existe na lista</string>
     <string name="register">Registrar</string>
     <string name="senhacofirma">Confirma Senha</string>
-    <string name="id_client_web">884490789623-8v3vsbcpa26umdct0v6dlkmkbfbci32q.apps.googleusercontent.com</string>
+    <string name="id_client_web">937577610117-36n6cjjbhfj1j18ji5ndt9rq34j43r1r.apps.googleusercontent.com</string>
     <string name="loginsucesso">Logado com Sucesso</string>
     <string name="loginsemsucesso">Falha ao Logar</string>
     <string name="senhasNoIdentica">As Senhas são diferentes</string>
@@ -33,4 +33,16 @@
     <string name="nome">Nome</string>
     <string name="sobrenome">Sobrenome</string>
     <string name="atualizar_perfil">ATUALIZAR PERFIL</string>
+    <string name="tarefa">Tarefa</string>
+    <string name="titulo">Titulo</string>
+    <string name="descricao">Descrição</string>
+    <string name="data">DATA</string>
+    <string name="hora">HORA</string>
+    <string name="salvar">Salvar</string>
+    <string name="msg_save">Registro Salvo Com Sucesso</string>
+    <string name="erro_registro">Erro ao atualizar registro</string>
+    <string name="erro_escolher_foto">Erro ao escolher foto</string>
+    <string name="profilefoto">Escolha a foto</string>
+    <string name="escolhaopcoes">Qual das fotos você deseja alterar?</string>
+    <string name="atualizar_capa">Atualizar Capa</string>
 </resources>

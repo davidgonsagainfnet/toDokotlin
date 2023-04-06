@@ -12,11 +12,16 @@ import android.view.View
 import android.widget.Adapter
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -28,6 +33,9 @@ class MainActivity : AppCompatActivity() {
     val nameChaveShared = "localLista"
     val nameFileShared = "lista_de_tarefas"
     lateinit var mGoogleClient: GoogleSignInClient
+    val uid = FirebaseAuth.getInstance().currentUser?.uid
+    val ref = FirebaseDatabase.getInstance().getReference("/users/$uid/tasks")
+    val listItems = ArrayList<String>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,6 +50,7 @@ class MainActivity : AppCompatActivity() {
         if(firebaseUser == null){
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -56,12 +65,61 @@ class MainActivity : AppCompatActivity() {
         val Lista = getData()
         if(Lista.isNotEmpty()){
             binding.tvNolista.visibility = View.GONE
-        }else{
-            binding.btnRemove.visibility = View.GONE
         }
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_multiple_choice, Lista)
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems)
         binding.lvLista.adapter = adapter
-        adapter.notifyDataSetChanged()
+
+        ref.addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                listItems.clear()
+                var cont = 0
+                for(child in snapshot.children){
+                    cont++
+                    listItems.add(child.child("titulo").value.toString())
+                }
+                if(cont > 0){
+                    binding.tvNolista.visibility = View.GONE
+                } else {
+                    binding.tvNolista.visibility = View.VISIBLE
+                }
+                adapter.notifyDataSetChanged()
+
+                binding.lvLista.setOnItemLongClickListener { parent, view, position, id ->
+                    val itemId =  snapshot.children.toList()[position].key
+
+                    if(itemId != null){
+                        AlertDialog.Builder(this@MainActivity)
+                            .setTitle("Deletar tarefa")
+                            .setMessage("Deseja deletar a tarefa?")
+                            .setPositiveButton("Sim"){ dialog, which ->
+                                ref.child(itemId).removeValue()
+                                Toast.makeText(this@MainActivity, "Tarefa deletada com sucesso", Toast.LENGTH_SHORT).show()
+                            }
+                            .setNegativeButton("Não"){ dialog, which ->
+                                dialog.dismiss()
+                            }
+                            .show()
+                    }
+
+                    true
+                }
+                binding.lvLista.setOnItemClickListener { parent, view, position, id ->
+                    val itemId =  snapshot.children.toList()[position].key
+
+                    val activity = Intent(this@MainActivity, TarefaActivity::class.java)
+                    activity.putExtra("id", itemId)
+                    startActivity(activity)
+                }
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(this@MainActivity, "Erro ao carregar tarefas", Toast.LENGTH_SHORT).show()
+            }
+
+        })
+
+        //adapter.notifyDataSetChanged()
 
         binding.imgLogout.setOnClickListener {
             firebaseAuth.signOut()
@@ -71,48 +129,14 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.btnAdd.setOnClickListener {
-            val item = binding.edtItem.text.toString()
-            if(validInfo(item, Lista)) {
-                Lista.add(item)
-                binding.tvNolista.visibility = View.GONE
-                binding.lvLista.adapter = adapter
-                adapter.notifyDataSetChanged()
-                saveLocal(Lista)
-                binding.edtItem.text.clear()
-                binding.btnRemove.visibility = View.VISIBLE
-            }
-        }
-
-        binding.btnRemove.setOnClickListener {
-            val position: SparseBooleanArray = binding.lvLista.checkedItemPositions
-            val count = binding.lvLista.count
-            var item = count - 1
-            while (item >= 0){
-                if(position.get(item)){
-                    adapter.remove(Lista.get(item))
-                }
-                item--
-            }
-            saveLocal(Lista)
-            position.clear()
-            if(Lista.isEmpty()){
-                binding.btnRemove.visibility = View.GONE
-                binding.tvNolista.visibility = View.VISIBLE
-            }
-            adapter.notifyDataSetChanged()
-        }
-
-        binding.btnClear.setOnClickListener {
-            Lista.clear()
-            saveLocal(Lista)
-            adapter.notifyDataSetChanged()
-            binding.btnRemove.visibility = View.GONE
-            binding.tvNolista.visibility = View.VISIBLE
-        }
-
         binding.imgPerfil.setOnClickListener {
             val intent = Intent(this,PerfilActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        binding.btnNovaTarefa.setOnClickListener {
+            val intent = Intent(this, TarefaActivity::class.java)
             startActivity(intent)
             finish()
         }
