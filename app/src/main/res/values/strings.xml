@@ -45,4 +45,8 @@
     <string name="profilefoto">Escolha a foto</string>
     <string name="escolhaopcoes">Qual das fotos você deseja alterar?</string>
     <string name="atualizar_capa">Atualizar Capa</string>
+    <string name="falhasaveimg">Falha ao salvar image</string>
+    <string name="imagesavesucess">Imagem salva com sucesso</string>
+    <string name="falhaloadimgperfil">Falha ao carregar imagem de perfil</string>
+    <string name="falhaloadimgperfilfundo">Falha ao carregar imagem de perfil de fundo</string>
 </resources>

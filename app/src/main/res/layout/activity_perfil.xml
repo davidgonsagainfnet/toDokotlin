@@ -140,14 +140,10 @@
             app:layout_constraintTop_toBottomOf="@+id/edt_nome"
             tools:layout_editor_absoluteX="0dp" />
 
-        <Button
-            android:id="@+id/button"
+        <FrameLayout
+            android:id="@+id/fragment_btn_salvar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/atualizar_perfil"
-            android:layout_marginHorizontal="15dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_sobre_nome" />
 
 
