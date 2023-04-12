@@ -15,19 +15,26 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
+import exemple.com.todo.fragment.EmailFragment
+import exemple.com.todo.fragment.ListViewFragment
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity(), EmailFragment.OnDataUpdateListener {
 
     private lateinit var binding: ActivityLoginBinding
     val Req_Code: Int = 123
     lateinit var mGoogleClient: GoogleSignInClient
     private  lateinit var firebaseAuth: FirebaseAuth
+    var email = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar!!.hide()
+
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_email, EmailFragment(this)).commit()
+
+
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.id_client_web))
@@ -51,6 +58,10 @@ class LoginActivity : AppCompatActivity() {
             login()
         }
 
+    }
+
+    override fun onDataUpdated(data: String) {
+        email = data
     }
 
     private fun signInGoogle() {
@@ -89,11 +100,11 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun notEmpty():Boolean = binding.editEmail.text.toString().trim().isNotEmpty() && binding.editSenha.text.toString().trim().isNotEmpty()
+    private fun notEmpty():Boolean = email.trim().isNotEmpty() && binding.editSenha.text.toString().trim().isNotEmpty()
 
     private fun login(){
         if(notEmpty()){
-            val userEmail = binding.editEmail.text.toString().trim()
+            val userEmail = email.trim()
             val userPassword = binding.editSenha.text.toString().trim()
 
             firebaseAuth.signInWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener { task ->
