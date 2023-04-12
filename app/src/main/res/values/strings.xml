@@ -49,4 +49,6 @@
     <string name="imagesavesucess">Imagem salva com sucesso</string>
     <string name="falhaloadimgperfil">Falha ao carregar imagem de perfil</string>
     <string name="falhaloadimgperfilfundo">Falha ao carregar imagem de perfil de fundo</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

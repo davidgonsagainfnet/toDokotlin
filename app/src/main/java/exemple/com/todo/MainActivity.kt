@@ -24,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import exemple.com.todo.fragment.WeatherFragment
 
 
 class MainActivity : AppCompatActivity() {
@@ -42,6 +43,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, WeatherFragment(this)).commit()
+
         supportActionBar!!.hide()
 
         val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()

@@ -42,8 +42,9 @@ class PerfilActivity : AppCompatActivity(), BtnSalvarFragment.MeuFragmentListene
     val ref = FirebaseDatabase.getInstance().getReference("/users/$uid/profile")
     var taskId: String = ""
     lateinit var imgemWeb: Bitmap
+    lateinit var mGoogleSignClient: GoogleSignInClient
     override fun onCreate(savedInstanceState: Bundle?) {
-        lateinit var mGoogleSignClient: GoogleSignInClient;
+
         super.onCreate(savedInstanceState)
         binding = ActivityPerfilBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -69,6 +70,14 @@ class PerfilActivity : AppCompatActivity(), BtnSalvarFragment.MeuFragmentListene
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
+        }
+
+        binding.imgLogout.setOnClickListener {
+            firebaseAuth.signOut()
+            mGoogleSignClient.signOut()
+
+            val intent = Intent(this,LoginActivity::class.java)
+            startActivity(intent)
         }
 
         binding.btnPhoto.setOnClickListener {
