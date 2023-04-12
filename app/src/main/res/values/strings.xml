@@ -13,7 +13,7 @@
     <string name="deletar">Deletar</string>
     <string name="limpar">Limpar</string>
     <string name="minhastarefas">Minhas Tarefas</string>
-    <string name="nolist">Sem Tarefas</string>
+    <string name="nolist">Lista Vazia</string>
     <string name="notextlist">Campo descritivo de lista esta em branco</string>
     <string name="taskList">Tarefa ja existe na lista</string>
     <string name="register">Registrar</string>

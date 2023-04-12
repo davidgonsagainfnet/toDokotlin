@@ -24,6 +24,8 @@ class WeatherFragment(val ctx: MainActivity) : Fragment() {
 
     private lateinit var viewModel: WeatherViewModel
     private lateinit var binding: FragmentWeatherBinding
+    val latPadrao = "-23.4109031"
+    val logPadrao = "-51.9706086"
 
     companion object{
         private const val REQUEST_LOCATION_PERMISSION = 1
@@ -40,13 +42,16 @@ class WeatherFragment(val ctx: MainActivity) : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentWeatherBinding.inflate(layoutInflater)
 
+        viewModel = WeatherViewModel(ctx)
+        viewModel.getWeather(latPadrao, logPadrao)
+
         if(ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
             getLocation(binding.root)
         }else{
             requestPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), REQUEST_LOCATION_PERMISSION)
         }
 
-        viewModel = WeatherViewModel(ctx)
+
 
 
         observer()

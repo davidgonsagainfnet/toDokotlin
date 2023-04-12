@@ -30,8 +30,6 @@ class WeatherViewModel(private val ctx: MainActivity): AndroidViewModel(ctx.appl
                 local2.postValue(apiTempo.location.name)
             } catch (e: Exception){
                 println(e.message)
-                Toast.makeText(ctx, e.message, Toast.LENGTH_SHORT).show()
-
             }
         }
     }
