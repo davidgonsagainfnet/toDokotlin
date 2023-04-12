@@ -26,6 +26,7 @@ import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import exemple.com.todo.databinding.ActivityPerfilBinding
 import exemple.com.todo.fragment.BtnSalvarFragment
+import exemple.com.todo.fragment.ListViewFragment
 import exemple.com.todo.util.BitmapConvert
 import java.io.ByteArrayOutputStream
 
@@ -49,6 +50,8 @@ class PerfilActivity : AppCompatActivity(), BtnSalvarFragment.MeuFragmentListene
         binding = ActivityPerfilBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar!!.hide()
+
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_list, ListViewFragment(null, 1,this)).commit()
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.id_client_web))

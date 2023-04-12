@@ -17,7 +17,7 @@ import com.google.firebase.database.ValueEventListener
 import exemple.com.todo.TarefaActivity
 import exemple.com.todo.databinding.FragmentListViewBinding
 
-class ListViewFragment(val ref: DatabaseReference, val tela: Int, val ctx: Context) : Fragment() {
+class ListViewFragment(val ref: DatabaseReference?, val tela: Int, val ctx: Context) : Fragment() {
     private lateinit var binding: FragmentListViewBinding
     val listItems = ArrayList<String>()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,15 +32,29 @@ class ListViewFragment(val ref: DatabaseReference, val tela: Int, val ctx: Conte
 
         when (tela) {
             0 -> {telaPrincipal()}
+            1 -> {sobre()}
         }
 
         return binding.root
     }
 
+    private fun sobre() {
+        val adapter = ArrayAdapter(ctx, android.R.layout.simple_list_item_1, listItems)
+        binding.lvLista.adapter = adapter
+        listItems.clear()
+        listItems.add("Projeto de Conclusão de Curso")
+        listItems.add("Desenvolvido por David Mendes")
+
+        val versionName = ctx.packageManager.getPackageInfo(ctx.packageName, 0).versionName
+        listItems.add("Versão do app $versionName")
+
+        adapter.notifyDataSetChanged()
+    }
+
     private fun telaPrincipal(){
         val adapter = ArrayAdapter(ctx, android.R.layout.simple_list_item_1, listItems)
         binding.lvLista.adapter = adapter
-        ref.addValueEventListener(object: ValueEventListener {
+        ref!!.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 listItems.clear()
                 var cont = 0
@@ -63,7 +77,7 @@ class ListViewFragment(val ref: DatabaseReference, val tela: Int, val ctx: Conte
                             .setTitle("Deletar tarefa")
                             .setMessage("Deseja deletar a tarefa?")
                             .setPositiveButton("Sim"){ dialog, which ->
-                                ref.child(itemId).removeValue()
+                                ref!!.child(itemId).removeValue()
                                 Toast.makeText(ctx, "Tarefa deletada com sucesso", Toast.LENGTH_SHORT).show()
                             }
                             .setNegativeButton("Não"){ dialog, which ->
