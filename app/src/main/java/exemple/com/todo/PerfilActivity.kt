@@ -91,6 +91,12 @@ class PerfilActivity : AppCompatActivity(), BtnSalvarFragment.MeuFragmentListene
             validatePermissions(2)
         }
 
+        binding.btnAlterPass.setOnClickListener {
+            val intent = Intent(this, AlterarSenhaActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
         ref.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.children.toList().isNotEmpty()){
