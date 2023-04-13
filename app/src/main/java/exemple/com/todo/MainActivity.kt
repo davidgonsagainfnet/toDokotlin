@@ -9,8 +9,10 @@ import exemple.com.todo.databinding.ActivityMainBinding
 import android.content.SharedPreferences
 import android.util.SparseBooleanArray
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Adapter
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -43,6 +45,19 @@ class MainActivity : AppCompatActivity() {
 
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container, WeatherFragment(this)).commit()
         supportFragmentManager.beginTransaction().replace(R.id.fragment_list, ListViewFragment(ref, 0,this)).commit()
+
+
+//      usado para ativar o Crashlytics
+
+//        val crashButton = Button(this)
+//        crashButton.text = "Test Crash"
+//        crashButton.setOnClickListener {
+//            throw RuntimeException("Test Crash") // Force a crash
+//        }
+//
+//        addContentView(crashButton, ViewGroup.LayoutParams(
+//            ViewGroup.LayoutParams.MATCH_PARENT,
+//            ViewGroup.LayoutParams.WRAP_CONTENT))
 
 
         supportActionBar!!.hide()
