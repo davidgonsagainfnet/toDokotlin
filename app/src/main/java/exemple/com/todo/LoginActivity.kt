@@ -58,6 +58,12 @@ class LoginActivity : AppCompatActivity(), EmailFragment.OnDataUpdateListener {
             login()
         }
 
+        binding.tvLembraSenha.setOnClickListener {
+            val intent = Intent(this,RecuperarSenhaActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
     }
 
     override fun onDataUpdated(data: String) {

@@ -50,5 +50,9 @@
     <string name="imagesavesucess">Imagem salva com sucesso</string>
     <string name="falhaloadimgperfil">Falha ao carregar imagem de perfil</string>
     <string name="falhaloadimgperfilfundo">Falha ao carregar imagem de perfil de fundo</string>
+    <string name="lembrarSenha">Esqueci minha senha</string>
+    <string name="recuperar">Recuperar</string>
+    <string name="voltar">Voltar</string>
+
 
 </resources>

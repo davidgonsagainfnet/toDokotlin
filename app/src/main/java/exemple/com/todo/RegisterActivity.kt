@@ -18,14 +18,16 @@ import exemple.com.todo.databinding.ActivityRegisterBinding
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.auth.FirebaseUser
+import exemple.com.todo.fragment.EmailFragment
 
-class RegisterActivity : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity(), EmailFragment.OnDataUpdateListener {
 
     lateinit var binding: ActivityRegisterBinding
     val Req_Code: Int = 123
     lateinit var mGoogleClient: GoogleSignInClient
     private  lateinit var firebaseAuth: FirebaseAuth
-    lateinit var createAccountInputArray:  Array<EditText>
+    //lateinit var createAccountInputArray:  Array<EditText>
+    var email = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,9 +35,11 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar!!.hide()
 
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_email, EmailFragment(this)).commit()
+
         FirebaseApp.initializeApp(this)
 
-        createAccountInputArray = arrayOf(binding.editEmail,binding.editSenha,binding.editSenhaConfirma)
+        //createAccountInputArray = arrayOf(binding.editEmail,binding.editSenha,binding.editSenhaConfirma)
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.id_client_web))
@@ -61,6 +65,10 @@ class RegisterActivity : AppCompatActivity() {
 
     }
 
+    override fun onDataUpdated(data: String) {
+        email = data
+    }
+
     private  fun verificaSenha(): Boolean{
         var identica = true
         if(binding.editSenha.text.toString().trim() != binding.editSenhaConfirma.text.toString().trim()){
@@ -73,7 +81,7 @@ class RegisterActivity : AppCompatActivity() {
             Toast.makeText(this,R.string.senhas6,Toast.LENGTH_SHORT).show()
         }
 
-        if(binding.editEmail.text.toString().isEmpty() || binding.editSenha.text.toString().isEmpty() || binding.editSenhaConfirma.text.toString().isEmpty()){
+        if(email.isEmpty() || binding.editSenha.text.toString().isEmpty() || binding.editSenhaConfirma.text.toString().isEmpty()){
             identica = false
             Toast.makeText(this,R.string.imformecampos,Toast.LENGTH_SHORT).show()
         }
@@ -86,7 +94,7 @@ class RegisterActivity : AppCompatActivity() {
             return
         }
 
-        val userEmail = binding.editEmail.text.toString().trim()
+        val userEmail = email.trim()
         val userPassword = binding.editSenha.text.toString().trim()
 
         firebaseAuth.createUserWithEmailAndPassword(userEmail,userPassword).addOnCompleteListener {task ->
