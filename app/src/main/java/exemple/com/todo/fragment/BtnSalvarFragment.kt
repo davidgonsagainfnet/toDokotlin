@@ -16,6 +16,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -23,15 +24,19 @@ import com.google.firebase.database.ValueEventListener
 import exemple.com.todo.MainActivity
 import exemple.com.todo.R
 import exemple.com.todo.databinding.FragmentBtnSalvarBinding
+import exemple.com.todo.util.Analytics
 import exemple.com.todo.util.NotificationReceiver
 import java.util.*
+import kotlin.random.Random
 
 class BtnSalvarFragment(val title: Int, val color: Int, val referencia: String, val lista: MutableMap<String, String>, val new: Boolean, val returnActivity: Int, val ctx: Context) : Fragment() {
 
     var contextoPai: MeuFragmentListener? = null
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        firebaseAnalytics = FirebaseAnalytics.getInstance(ctx)
     }
 
     override fun onAttach(context: Context) {
@@ -75,6 +80,13 @@ class BtnSalvarFragment(val title: Int, val color: Int, val referencia: String, 
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(!snapshot.exists()) return
                 dbReal.setValue(lista)
+
+                var id: Int = Random.nextInt(0, 100000)
+
+                val descricao = if(returnActivity === 1){ "Alterar Tarefa"} else {"Alterar Perfil"}
+
+                Analytics.sendAnalytics(firebaseAnalytics,id.toString(),descricao)
+
                 Toast.makeText(context, R.string.msg_save, Toast.LENGTH_SHORT).show()
             }
 
@@ -91,6 +103,13 @@ class BtnSalvarFragment(val title: Int, val color: Int, val referencia: String, 
         val baseGoogle = dbReal.push()
         baseGoogle.setValue(lista)
         Toast.makeText(context, R.string.msg_save, Toast.LENGTH_SHORT).show()
+
+        var id: Int = Random.nextInt(0, 100000)
+
+        val descricao = if(returnActivity === 1){ "Criar Tarefa"} else {"Criar Perfil"}
+
+        Analytics.sendAnalytics(firebaseAnalytics,id.toString(),descricao)
+
         activityReturna()
     }
 
