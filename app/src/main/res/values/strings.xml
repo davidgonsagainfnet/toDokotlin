@@ -55,4 +55,5 @@
     <string name="voltar">Voltar</string>
     <string name="senhafraca">Senha Muito Fraca</string>
     <string name="alterarsenha">Alterar Senha</string>
+    <string name="senhaalterada">Senha alterada com sucesso</string>
 </resources>
