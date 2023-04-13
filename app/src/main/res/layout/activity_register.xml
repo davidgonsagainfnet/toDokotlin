@@ -11,15 +11,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="match_parent"
-            android:layout_height="500dp"
-            android:scaleType="fitXY"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:src="@drawable/ellipse_1" />
+<!--        <ImageView-->
+<!--            android:id="@+id/imageView3"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="500dp"-->
+<!--            android:scaleType="fitXY"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            android:src="@drawable/ellipse_1" />-->
 
         <ImageView
             android:id="@+id/imageView2"
@@ -36,27 +36,16 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:id="@+id/fragment_email"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="5dp"
             app:layout_constraintTop_toBottomOf="@+id/textView"/>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayoutSenha"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_email"
-            tools:layout_editor_absoluteX="16dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_senha"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/senha"
-                android:singleLine="true" />
-
-        </com.google.android.material.textfield.TextInputLayout>
+            android:background="@color/white"
+            android:id="@+id/fragment_password"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_email"/>
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -66,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutSenha"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_password"
             tools:layout_editor_absoluteX="16dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -74,6 +63,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/senhacofirma"
+                android:inputType="textPassword"
                 android:singleLine="true" />
 
         </com.google.android.material.textfield.TextInputLayout>

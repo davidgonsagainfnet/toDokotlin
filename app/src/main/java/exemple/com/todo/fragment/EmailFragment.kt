@@ -30,7 +30,6 @@ class EmailFragment(val ctx: Context) : Fragment() {
 
         binding = FragmentEmailBinding.inflate(layoutInflater)
 
-        //dataUpdateListener!!.onDataUpdated("david")
         listener()
 
         return binding.root

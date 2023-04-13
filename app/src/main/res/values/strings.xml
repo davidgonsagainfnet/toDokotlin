@@ -23,7 +23,7 @@
     <string name="loginsucesso">Logado com Sucesso</string>
     <string name="loginsemsucesso">Falha ao Logar</string>
     <string name="senhasNoIdentica">As Senhas são diferentes</string>
-    <string name="senhas6">Senha deve ter no minimo 6 digitos</string>
+    <string name="senhas6">Senha deve ter no minimo 8 digitos</string>
     <string name="imformecampos">Preencha todos os campos</string>
     <string name="userCreate">Usuario Criado Com Sucesso, Verifique sua caixa de Email</string>
     <string name="userExist">Usuario ja cadastrado</string>
@@ -53,6 +53,5 @@
     <string name="lembrarSenha">Esqueci minha senha</string>
     <string name="recuperar">Recuperar</string>
     <string name="voltar">Voltar</string>
-
-
+    <string name="senhafraca">Senha Muito Fraca</string>
 </resources>
