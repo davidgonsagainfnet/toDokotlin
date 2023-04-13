@@ -1,7 +1,10 @@
 package exemple.com.todo
 
-import android.app.DatePickerDialog
-import android.app.TimePickerDialog
+import android.app.*
+import android.content.Context
+import android.content.Intent
+import android.icu.text.CaseMap.Title
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
@@ -13,6 +16,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import exemple.com.todo.databinding.ActivityTarefaBinding
 import exemple.com.todo.fragment.BtnSalvarFragment
+import exemple.com.todo.util.NotificationReceiver
 import java.util.*
 import kotlin.collections.*
 
@@ -42,6 +46,9 @@ class TarefaActivity : AppCompatActivity(), BtnSalvarFragment.MeuFragmentListene
         hour = current_date_time.get(Calendar.HOUR_OF_DAY)
         minute = current_date_time.get(Calendar.MINUTE)
 
+        binding.etDate.setText(String.format("%02d/%02d/%04d",day,month + 1, year))
+        binding.etHora.setText(String.format("%02d:%02d", hour, minute))
+
         listener()
 
         this.taskId = intent.getStringExtra("id") ?: ""
@@ -56,12 +63,26 @@ class TarefaActivity : AppCompatActivity(), BtnSalvarFragment.MeuFragmentListene
             new = false
         }
 
-        val meuFragment = BtnSalvarFragment(R.string.salvar, R.color.marron, referencia,listTask,new,1)
+        val meuFragment = BtnSalvarFragment(R.string.salvar, R.color.marron, referencia,listTask,new,1, this)
 
         meuFragment.contextoPai = this
 
         supportFragmentManager.beginTransaction().add(R.id.fragment_btn_salvar, meuFragment).commit()
 
+        criarCanal()
+
+    }
+
+    private fun criarCanal() {
+        val name = "Canal de Notificação do TODO"
+        val descriptionText = "Canal de Notificação do TODO"
+        val importance = NotificationManager.IMPORTANCE_HIGH
+        val channel = NotificationChannel("TODO", name, importance).apply {
+            description = descriptionText
+        }
+
+        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.createNotificationChannel(channel)
     }
 
     private fun loadTarefa() {
@@ -89,10 +110,10 @@ class TarefaActivity : AppCompatActivity(), BtnSalvarFragment.MeuFragmentListene
         listTask["descricao"] = binding.edDescricao.text.toString()
         listTask["data"] = binding.etDate.text.toString()
         listTask["hora"] = binding.etHora.text.toString()
-        return binding.etTitle.text.toString() !== "" &&
-               binding.edDescricao.text.toString() !== "" &&
-               binding.etDate.text.toString() !== "" &&
-               binding.etHora.text.toString() != ""
+        return binding.etTitle.text.toString().trim().isNotEmpty() &&
+               binding.edDescricao.text.toString().trim().isNotEmpty() &&
+               binding.etDate.text.toString().trim().isNotEmpty() &&
+               binding.etHora.text.toString().trim().isNotEmpty()
     }
 
     private fun listener() {
@@ -111,4 +132,6 @@ class TarefaActivity : AppCompatActivity(), BtnSalvarFragment.MeuFragmentListene
         }
 
     }
+
+
 }

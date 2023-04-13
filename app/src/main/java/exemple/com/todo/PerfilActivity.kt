@@ -114,7 +114,7 @@ class PerfilActivity : AppCompatActivity(), BtnSalvarFragment.MeuFragmentListene
                     new = false
                 }
 
-                val meuFragment = BtnSalvarFragment(R.string.salvar, R.color.marron, referencia,listTask,new,0)
+                val meuFragment = BtnSalvarFragment(R.string.salvar, R.color.marron, referencia,listTask,new,0, this@PerfilActivity)
 
                 meuFragment.contextoPai = this@PerfilActivity
 
@@ -134,7 +134,7 @@ class PerfilActivity : AppCompatActivity(), BtnSalvarFragment.MeuFragmentListene
         listTask["nome"] = binding.edtNome.text.toString()
         listTask["sobrenome"] = binding.edtSobreNome.text.toString()
 
-        return binding.edtEmail.text.toString() !== "" && binding.edtNome.text.toString() !== "" && binding.edtSobreNome.text.toString() !== ""
+        return binding.edtEmail.text.toString().trim().isNotEmpty() && binding.edtNome.text.toString().trim().isNotEmpty() && binding.edtSobreNome.text.toString().trim().isNotEmpty()
     }
 
     override fun onResume() {
